@@ -514,12 +514,6 @@ function startResultScene() {
 
 
 
-    var fukidashi = new Sprite(241, 166);
-    fukidashi.image = game.assets["images_hanadan/fukidashi.png"];
-    fukidashi.x = 241;
-    fukidashi.y = 168;
-    resultScene.addChild(fukidashi);
-
 
     var heading = new Label();
     heading.width = 510;
@@ -531,20 +525,34 @@ function startResultScene() {
     resultScene.addChild(heading);
 
 
+
+
     //todo ここは画像にしてもらう
     //吹き出しと文字を合体。OKNG2パターン作る
-
-    var heading2 = new Label();
-    heading2.width = 210;
-    heading2.color = "#000000";
-    heading2.text = "素敵な泥団子だわ！付き合ってあげてもいいわよ";
-    heading2.font = "20px osaka";
-    heading2.x = 50;
-    heading2.y = 240;
-    resultScene.addChild(heading2);
+    var fukidashi = new Sprite(241, 166);
+    fukidashi.image = game.assets["images_hanadan/fukidashi.png"];
+    fukidashi.x = 241;
+    fukidashi.y = 168;
+    resultScene.addChild(fukidashi);
     if (result == true) {
 
     }
+
+
+    //戻るボタン
+    var back = new Label();
+    back.width = 510;
+    back.color = "#000000";
+    back.text = "スタートに戻る";
+    back.font = "40px osaka";
+    back.x = 50;
+    back.y = 600;
+    back.on('touchstart', function (e) {
+        game.replaceScene(game.rootScene);
+    });
+    resultScene.addChild(back);
+
+
 
 
 }
