@@ -68,46 +68,42 @@ game.onload = function () {
 
 //タイトル
 function startTitleScene() {
-    // var title = new Sprite(640, 640);
-    // title.image = game.assets["images/title.png"];
-    // game.rootScene.addChild(title);
-
-
-    // var fukidashi = new Sprite(241, 168);  //画像サイズ
-    // fukidashi.image = game.assets["images_hanadan/fukidashi.png"];  //画像ファイル名
-    // fukidashi.x = 100; //x座標
-    // fukidashi.y = 20;  //y座標
-    // fukidashi.tl.scaleTo(0.5, 0.5, 1);
-    // game.rootScene.addChild(fukidashi);  //表示
-
-
-
-    // var fukidashi = new Sprite(300, 300);
-    // fukidashi.image = game.assets["images_hanadan/fukidashi.png"]
-    // game.rootScene.addChild(fukidashi);
-
-
-    // var button_master = new Sprite(600, 100);
-    // button_master.image = game.assets["images/button_master.png"];
-    // button_master.x = 20;
-    // button_master.y = 300;
-    // button_master.on('touchstart', function (e) {
-    //     var sound = game.assets['se/start.mp3'].clone();
-    //     sound.play();
-    //     this.tl.scaleTo(0.95, 0.95, 3);
-    //     this.tl.scaleTo(1, 1, 3);
-    //     this.tl.then(function () {
-    //         //シーン遷移
-    //         startGameScene(16);
-    //     });
-    // });
-    // game.rootScene.addChild(button_master);
-
     var button_beginner = new Sprite(214, 82);
     button_beginner.image = game.assets["images_hanadan/start.png"];
-    button_beginner.x = 20;
+    button_beginner.x = 200;
     button_beginner.y = 420;
     button_beginner.on('touchstart', function (e) {
+        var sound = game.assets['se/start.mp3'].clone();
+        sound.play();
+
+        this.tl.scaleTo(0.95, 0.95, 3);
+        this.tl.scaleTo(1, 1, 3);
+        this.tl.then(function () {
+            //シーン遷移
+            //startGameScene(8);
+            startMenuScene();
+        });
+    });
+    game.rootScene.addChild(button_beginner);
+}
+
+
+function startMenuScene() {
+    var menuScene = new Scene();
+    menuScene.backgroundColor = "white";
+    game.replaceScene(menuScene);
+
+    var menu = new Sprite(338, 107);
+    menu.image = game.assets["images_hanadan/menu.png"];
+    menu.x = 150;
+    menu.y = 20;
+    menuScene.addChild(menu);
+
+    var menu1 = new Sprite(221, 74);
+    menu1.image = game.assets["images_hanadan/menu1.png"];
+    menu1.x = 150;
+    menu1.y = 127;
+    menu1.on('touchstart', function (e) {
         var sound = game.assets['se/start.mp3'].clone();
         sound.play();
 
@@ -118,7 +114,79 @@ function startTitleScene() {
             startGameScene(8);
         });
     });
-    game.rootScene.addChild(button_beginner);
+    menuScene.addChild(menu1);
+
+    var menu2 = new Sprite(221, 74);
+    menu2.image = game.assets["images_hanadan/menu2.png"];
+    menu2.x = 150;
+    menu2.y = 201;
+    menu2.on('touchstart', function (e) {
+        var sound = game.assets['se/start.mp3'].clone();
+        sound.play();
+
+        this.tl.scaleTo(0.95, 0.95, 3);
+        this.tl.scaleTo(1, 1, 3);
+        this.tl.then(function () {
+            //シーン遷移
+            startGameScene(8);
+        });
+    });
+    menuScene.addChild(menu2);
+
+    var menu3 = new Sprite(221, 74);
+    menu3.image = game.assets["images_hanadan/menu3.png"];
+    menu3.x = 150;
+    menu3.y = 275;
+    menu3.on('touchstart', function (e) {
+        var sound = game.assets['se/start.mp3'].clone();
+        sound.play();
+
+        this.tl.scaleTo(0.95, 0.95, 3);
+        this.tl.scaleTo(1, 1, 3);
+        this.tl.then(function () {
+            //シーン遷移
+            startGameScene(8);
+        });
+    });
+    menuScene.addChild(menu3);
+
+    var menu4 = new Sprite(221, 74);
+    menu4.image = game.assets["images_hanadan/menu4.png"];
+    menu4.x = 150;
+    menu4.y = 349;
+    menu4.on('touchstart', function (e) {
+        var sound = game.assets['se/start.mp3'].clone();
+        sound.play();
+
+        this.tl.scaleTo(0.95, 0.95, 3);
+        this.tl.scaleTo(1, 1, 3);
+        this.tl.then(function () {
+            //シーン遷移
+            startGameScene(8);
+        });
+    });
+    menuScene.addChild(menu4);
+
+    var menu5 = new Sprite(250, 74);
+    menu5.image = game.assets["images_hanadan/menu5.png"];
+    menu5.x = 150;
+    menu5.y = 423;
+    menu5.on('touchstart', function (e) {
+        var sound = game.assets['se/start.mp3'].clone();
+        sound.play();
+
+        this.tl.scaleTo(0.95, 0.95, 3);
+        this.tl.scaleTo(1, 1, 3);
+        this.tl.then(function () {
+            //シーン遷移
+            startGameScene(8);
+        });
+    });
+    menuScene.addChild(menu5);
+
+
+
+
 }
 
 //ゲームシーン
