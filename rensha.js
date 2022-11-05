@@ -1,7 +1,7 @@
 //初期化
 enchant();
 //ゲーム画面
-var game = new Core(640, 800);
+var game = new Core(360, 800);
 //FPS
 game.fps = 60;
 //背景色
