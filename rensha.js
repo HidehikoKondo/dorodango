@@ -43,7 +43,7 @@ game.preload('images_hanadan/menu2.png');
 game.preload('images_hanadan/menu3.png');
 game.preload('images_hanadan/menu4.png');
 game.preload('images_hanadan/menu5.png');
-game.preload('images_hanadan/ng.jpg');
+game.preload('images_hanadan/ng.png');
 game.preload('images_hanadan/ok.png');
 game.preload('images_hanadan/onsen0.png');
 game.preload('images_hanadan/onsen1.png');
@@ -55,6 +55,9 @@ game.preload('images_hanadan/onsen6.png');
 game.preload('images_hanadan/onsen7.png');
 game.preload('images_hanadan/start.png');
 
+
+//判定結果
+var result = false;
 
 
 
@@ -111,7 +114,7 @@ function startMenuScene() {
         this.tl.scaleTo(1, 1, 3);
         this.tl.then(function () {
             //シーン遷移
-            startGameScene(8);
+            startGameScene(10);
         });
     });
     menuScene.addChild(menu1);
@@ -128,7 +131,7 @@ function startMenuScene() {
         this.tl.scaleTo(1, 1, 3);
         this.tl.then(function () {
             //シーン遷移
-            startGameScene(8);
+            startGameScene(20);
         });
     });
     menuScene.addChild(menu2);
@@ -145,7 +148,7 @@ function startMenuScene() {
         this.tl.scaleTo(1, 1, 3);
         this.tl.then(function () {
             //シーン遷移
-            startGameScene(8);
+            startGameScene(30);
         });
     });
     menuScene.addChild(menu3);
@@ -162,7 +165,7 @@ function startMenuScene() {
         this.tl.scaleTo(1, 1, 3);
         this.tl.then(function () {
             //シーン遷移
-            startGameScene(8);
+            startGameScene(40);
         });
     });
     menuScene.addChild(menu4);
@@ -179,7 +182,7 @@ function startMenuScene() {
         this.tl.scaleTo(1, 1, 3);
         this.tl.then(function () {
             //シーン遷移
-            startGameScene(8);
+            startGameScene(50);
         });
     });
     menuScene.addChild(menu5);
@@ -199,27 +202,31 @@ function startGameScene(tap) {
         taptext.remove();
 
         tapCount++;
-        label.text = tapCount + "/sec";
+        label.text = tapCount + "回";
         indicator.width = (indicator_back.width / tap) * tapCount;
         console.log(indicator.width);
         if (indicator.width == indicator_back.width) {
             gameScene.clearEventListener('touchstart');
             gameScene.clearEventListener('touchend');
             gameScene.tl.clear();
-            cutin(gameScene, meijin, dango);
+            cutin(gameScene, meijin, dango, heading, heading2, tap, tapCount, hands);
         }
         dango.tl.moveBy(0, 10, 1);
     });
     gameScene.on('touchend', function (e) {
         dango.tl.moveBy(0, -10, 1);
     });
+
+    //10秒まち
     gameScene.tl.delay(600);
     gameScene.tl.then(function () {
         tapCount = 0;
         indicator.width = (indicator_back.width / tap) * tapCount;
-        label.text = tapCount + "/sec";
+        label.text = tapCount + "回";
+        cutin(gameScene, meijin, dango, heading, heading2, tap, tapCount, hands);
     });
-    gameScene.tl.loop();
+    //    gameScene.tl.loop();
+
     //ワールド
     var world = new PhysicsWorld(0, 500);
     gameScene.onenterframe = function () {
@@ -275,10 +282,10 @@ function startGameScene(tap) {
     var heading2 = new Label();
     heading2.width = 510;
     heading2.color = "#000000";
-    heading2.text = "100回叩ければ成功！！";
-    heading2.font = "25px osaka";
+    heading2.text = tap + "回叩ければ成功！！";
+    heading2.font = "40px osaka";
     heading2.x = 120;
-    heading2.y = 200;
+    heading2.y = 240;
     gameScene.addChild(heading2);
 
 
@@ -369,10 +376,17 @@ function breakWaterMelon(gameScene) {
 
 }
 
-function gameClear(gameScene, meijin, item) {
+function gameClear(gameScene, meijin, item, hands) {
     //スイカ割り
     item.remove();
-    breakWaterMelon(gameScene);
+    hands.remove();
+
+    //    breakWaterMelon(gameScene);
+
+    //ここでOK画像を表示する
+
+
+
 
     gameScene.tl.delay(300);
     gameScene.tl.then(function () {
@@ -380,44 +394,56 @@ function gameClear(gameScene, meijin, item) {
     })
 
 
+
     //プレイヤー
     meijin.image = game.assets["images/meijin_hit.png"];
 
     gameScene.touchEnabled = false;
-    var explosion = new Sprite(640, 480);
-    explosion.image = game.assets["images/explosion.png"];
-    explosion.tl.scaleTo(0.8, 0.8, 0);
-    explosion.rotation = -90;
-    explosion.x = 90;
-    explosion.y = 250;
-    gameScene.addChild(explosion);
-    var sound = game.assets['se/explosion.mp3'].clone();
-    sound.play();
-    explosion.frame = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, null];
-    explosion.addEventListener(Event.ANIMATION_END, function () {
-        this.remove();
+    // var explosion = new Sprite(640, 480);
+    // explosion.image = game.assets["images/explosion.png"];
+    // explosion.tl.scaleTo(0.8, 0.8, 0);
+    // explosion.rotation = -90;
+    // explosion.x = 90;
+    // explosion.y = 250;
+    // gameScene.addChild(explosion);
+    // var sound = game.assets['se/explosion.mp3'].clone();
+    // sound.play();
+    // explosion.frame = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18, 19, 19, null];
+    // explosion.addEventListener(Event.ANIMATION_END, function () {
+    //     this.remove();
 
-        var clear = new Sprite(640, 250);
-        clear.image = game.assets["images/stageclear.png"];
-        clear.x = 640;
-        clear.y = 300;
-        gameScene.addChild(clear);
-        clear.tl.delay(90);
-        clear.tl.then(function () {
-            var sound = game.assets['se/clear.mp3'].clone();
-            sound.play();
-        });
-        clear.tl.moveTo(0, 340, 7);
-    });
+    //     var clear = new Sprite(640, 250);
+    //     clear.image = game.assets["images/stageclear.png"];
+    //     clear.x = 640;
+    //     clear.y = 300;
+    //     gameScene.addChild(clear);
+    //     clear.tl.delay(90);
+    //     clear.tl.then(function () {
+    //         var sound = game.assets['se/clear.mp3'].clone();
+    //         sound.play();
+    //     });
+    //     clear.tl.moveTo(0, 340, 7);
+    // });
 
     //    game.stop();
 
 
 }
 
-function cutin(gameScene, meijin, item) {
+function cutin(gameScene, meijin, item, heading, heading2, tap, tapcount, hands) {
+
     var sound = game.assets['se/cutin.mp3'].clone();
     sound.play();
+
+    heading.text = "結果発表！！"
+
+    if (tap <= tapcount) {
+        heading2.text = "キレイにできたね♥"
+        result = true;
+    } else {
+        heading2.text = "残念！失敗作！"
+        result = false;
+    }
 
     var cutinGroup = new Group();
     cutinGroup.x = 640;
@@ -427,7 +453,7 @@ function cutin(gameScene, meijin, item) {
     cutinGroup.tl.delay(60);
     cutinGroup.tl.then(function () {
         cutinGroup.remove();
-        gameClear(gameScene, meijin, item);
+        gameClear(gameScene, meijin, item, hands);
     });
 
     var back = new Sprite(640, 240);
@@ -446,4 +472,33 @@ function cutin(gameScene, meijin, item) {
     face.x = 0;
     face.y = 100;
     cutinGroup.addChild(face);
+
+
+
+    var clear = new Sprite(360, 359);
+    if (result == true) {
+        clear.image = game.assets["images_hanadan/ok.png"];
+    } else {
+        clear.image = game.assets["images_hanadan/ng.png"];
+    }
+
+    clear.x = 140;
+    clear.y = 300;
+    clear.tl.scaleTo(0, 0, 1);
+
+
+
+
+    gameScene.addChild(clear);
+
+
+
+
+    clear.tl.delay(60);
+    clear.tl.then(function () {
+        var sound = game.assets['se/clear.mp3'].clone();
+        sound.play();
+    });
+    clear.tl.scaleTo(1, 1, 60);
+
 }
