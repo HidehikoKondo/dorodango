@@ -5,7 +5,7 @@ var game = new Core(640, 800);
 //FPS
 game.fps = 60;
 //背景色
-game.rootScene.backgroundColor = "white";
+game.rootScene.backgroundColor = "#7D9DF2";
 //アセットプリロード
 game.preload('enchantjs/images/chara1.png');
 game.preload('images/title.png');
@@ -90,7 +90,7 @@ function startTitleScene() {
 
 function startMenuScene() {
     var menuScene = new Scene();
-    menuScene.backgroundColor = "white";
+    menuScene.backgroundColor = "#7D9DF2";
     game.replaceScene(menuScene);
 
     var menu = new Sprite(338, 107);
@@ -190,7 +190,7 @@ function startGameScene(tap) {
     var tapCount = 0;
     //シーン作成
     var gameScene = new Scene();
-    gameScene.backgroundColor = "white";
+    gameScene.backgroundColor = "#7D9DF2";
 
     gameScene.on('touchstart', function (e) {
         var sound = game.assets['se/tap.mp3'].clone();
@@ -199,7 +199,7 @@ function startGameScene(tap) {
         taptext.remove();
 
         tapCount++;
-        label.text = tapCount + "tap/sec";
+        label.text = tapCount + "/sec";
         indicator.width = (indicator_back.width / tap) * tapCount;
         console.log(indicator.width);
         if (indicator.width == indicator_back.width) {
@@ -213,11 +213,11 @@ function startGameScene(tap) {
     gameScene.on('touchend', function (e) {
         dango.tl.moveBy(0, -10, 1);
     });
-    gameScene.tl.delay(60);
+    gameScene.tl.delay(600);
     gameScene.tl.then(function () {
         tapCount = 0;
         indicator.width = (indicator_back.width / tap) * tapCount;
-        label.text = tapCount + "tap/sec";
+        label.text = tapCount + "/sec";
     });
     gameScene.tl.loop();
     //ワールド
@@ -244,7 +244,7 @@ function startGameScene(tap) {
     gameScene.addChild(indicator_back);
 
     var indicator = new Sprite(596, 36);
-    indicator.backgroundColor = "#999999";
+    indicator.backgroundColor = "#ffff00";
     indicator.x = 22;
     indicator.y = 22;
     gameScene.addChild(indicator);
