@@ -183,10 +183,6 @@ function startMenuScene() {
         });
     });
     menuScene.addChild(menu5);
-
-
-
-
 }
 
 //ゲームシーン
@@ -195,6 +191,7 @@ function startGameScene(tap) {
     //シーン作成
     var gameScene = new Scene();
     gameScene.backgroundColor = "white";
+
     gameScene.on('touchstart', function (e) {
         var sound = game.assets['se/tap.mp3'].clone();
         sound.play();
@@ -209,12 +206,12 @@ function startGameScene(tap) {
             gameScene.clearEventListener('touchstart');
             gameScene.clearEventListener('touchend');
             gameScene.tl.clear();
-            cutin(gameScene, meijin, item);
+            cutin(gameScene, meijin, dango);
         }
-        meijin.tl.moveBy(0, 3, 1);
+        dango.tl.moveBy(0, 10, 1);
     });
     gameScene.on('touchend', function (e) {
-        meijin.tl.moveBy(0, -3, 1);
+        dango.tl.moveBy(0, -10, 1);
     });
     gameScene.tl.delay(60);
     gameScene.tl.then(function () {
@@ -264,19 +261,53 @@ function startGameScene(tap) {
     label.y = 30;
     gameScene.addChild(label);
 
+
+    var heading = new Label();
+    heading.width = 510;
+    heading.color = "#000000";
+    heading.text = "連打しよう！";
+    heading.font = "50px osaka";
+    heading.x = 120;
+    heading.y = 100;
+    gameScene.addChild(heading);
+
+
+    var heading2 = new Label();
+    heading2.width = 510;
+    heading2.color = "#000000";
+    heading2.text = "100回叩ければ成功！！";
+    heading2.font = "25px osaka";
+    heading2.x = 120;
+    heading2.y = 200;
+    gameScene.addChild(heading2);
+
+
     //プレイヤー
     var meijin = new Sprite(431, 531);
     meijin.image = game.assets["images/meijin.png"];
     meijin.x = 100;
     meijin.y = 60;
-    gameScene.addChild(meijin);
+    // gameScene.addChild(meijin);
 
-    //アイテム
-    var item = new Sprite(234, 232);
-    item.image = game.assets["images/watermelon.png"];
-    item.x = 283;
-    item.y = 393;
-    gameScene.addChild(item);
+    //泥団子
+    var dango = new Sprite(462, 462);
+    dango.image = game.assets["images_hanadan/dango.png"];
+    dango.x = 83;
+    dango.y = 353;
+    // dango.tl.scaleTo(0.5, 0.5, 1);
+    gameScene.addChild(dango);
+
+
+    //手
+    var hands = new Sprite(360, 235);
+    hands.image = game.assets["images_hanadan/hands.png"];
+    hands.x = 153;
+    hands.y = 353;
+    gameScene.addChild(hands);
+    hands.tl.moveBy(0, 200, 40);
+    hands.tl.moveBy(0, -200, 40);
+    hands.tl.loop();
+
 
     //tap!!
     var taptext = new Sprite(640, 250);
