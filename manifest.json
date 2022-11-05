@@ -1,6 +1,6 @@
 {
-    "name": "THE RENSHA =Master of SUIKA-WARI=",
-    "short_name": "THE RENSHA",
+    "name": "花より泥団子",
+    "short_name": "DORODANGO",
     "icons": [
         {
             "src": "images/icon256.png",
@@ -19,7 +19,7 @@
         }
     ],
     "orientation": "portrait",
-    "start_url": "/rensha/",
+    "start_url": "https://hidehikokondo.github.io/dorodango/",
     "display": "fullscreen",
     "theme_color": "#ffffff"
 }
