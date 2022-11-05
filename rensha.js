@@ -1,11 +1,11 @@
 //初期化
 enchant();
 //ゲーム画面
-var game = new Core(640, 640);
+var game = new Core(640, 800);
 //FPS
 game.fps = 60;
 //背景色
-game.rootScene.backgroundColor = "red";
+game.rootScene.backgroundColor = "white";
 //アセットプリロード
 game.preload('enchantjs/images/chara1.png');
 game.preload('images/title.png');
@@ -26,6 +26,37 @@ game.preload('se/explosion.mp3');
 game.preload('se/tap.mp3');
 game.preload('se/start.mp3');
 game.preload('se/cutin.mp3');
+game.preload('images_hanadan/fukidashi.png');
+
+
+game.preload('images_hanadan/title-bg.png');
+game.preload('images_hanadan/dango.png');
+game.preload('images_hanadan/dango-broken.jpg');
+game.preload('images_hanadan/dango-shine.png');
+game.preload('images_hanadan/fukidashi.png');
+game.preload('images_hanadan/fukidashi1.png');
+game.preload('images_hanadan/fukidashi2.png');
+game.preload('images_hanadan/hands.png');
+game.preload('images_hanadan/menu.png');
+game.preload('images_hanadan/menu1.png');
+game.preload('images_hanadan/menu2.png');
+game.preload('images_hanadan/menu3.png');
+game.preload('images_hanadan/menu4.png');
+game.preload('images_hanadan/menu5.png');
+game.preload('images_hanadan/ng.jpg');
+game.preload('images_hanadan/ok.png');
+game.preload('images_hanadan/onsen0.png');
+game.preload('images_hanadan/onsen1.png');
+game.preload('images_hanadan/onsen2.png');
+game.preload('images_hanadan/onsen3.png');
+game.preload('images_hanadan/onsen4.png');
+game.preload('images_hanadan/onsen5.png');
+game.preload('images_hanadan/onsen6.png');
+game.preload('images_hanadan/onsen7.png');
+game.preload('images_hanadan/start.png');
+
+
+
 
 //ゲームスタート
 game.start(); // start your game!
@@ -37,28 +68,43 @@ game.onload = function () {
 
 //タイトル
 function startTitleScene() {
-    var title = new Sprite(640, 640);
-    title.image = game.assets["images/title.png"];
-    game.rootScene.addChild(title);
+    // var title = new Sprite(640, 640);
+    // title.image = game.assets["images/title.png"];
+    // game.rootScene.addChild(title);
 
-    var button_master = new Sprite(600, 100);
-    button_master.image = game.assets["images/button_master.png"];
-    button_master.x = 20;
-    button_master.y = 300;
-    button_master.on('touchstart', function (e) {
-        var sound = game.assets['se/start.mp3'].clone();
-        sound.play();
-        this.tl.scaleTo(0.95, 0.95, 3);
-        this.tl.scaleTo(1, 1, 3);
-        this.tl.then(function () {
-            //シーン遷移
-            startGameScene(16);
-        });
-    });
-    game.rootScene.addChild(button_master);
 
-    var button_beginner = new Sprite(600, 100);
-    button_beginner.image = game.assets["images/button_beginner.png"];
+    // var fukidashi = new Sprite(241, 168);  //画像サイズ
+    // fukidashi.image = game.assets["images_hanadan/fukidashi.png"];  //画像ファイル名
+    // fukidashi.x = 100; //x座標
+    // fukidashi.y = 20;  //y座標
+    // fukidashi.tl.scaleTo(0.5, 0.5, 1);
+    // game.rootScene.addChild(fukidashi);  //表示
+
+
+
+    // var fukidashi = new Sprite(300, 300);
+    // fukidashi.image = game.assets["images_hanadan/fukidashi.png"]
+    // game.rootScene.addChild(fukidashi);
+
+
+    // var button_master = new Sprite(600, 100);
+    // button_master.image = game.assets["images/button_master.png"];
+    // button_master.x = 20;
+    // button_master.y = 300;
+    // button_master.on('touchstart', function (e) {
+    //     var sound = game.assets['se/start.mp3'].clone();
+    //     sound.play();
+    //     this.tl.scaleTo(0.95, 0.95, 3);
+    //     this.tl.scaleTo(1, 1, 3);
+    //     this.tl.then(function () {
+    //         //シーン遷移
+    //         startGameScene(16);
+    //     });
+    // });
+    // game.rootScene.addChild(button_master);
+
+    var button_beginner = new Sprite(214, 82);
+    button_beginner.image = game.assets["images_hanadan/start.png"];
     button_beginner.x = 20;
     button_beginner.y = 420;
     button_beginner.on('touchstart', function (e) {
