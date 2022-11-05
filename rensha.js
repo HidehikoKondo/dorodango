@@ -280,11 +280,11 @@ function startGameScene(tap) {
 
 
     var heading2 = new Label();
-    heading2.width = 510;
+    heading2.width = 610;
     heading2.color = "#000000";
-    heading2.text = tap + "回叩ければ成功！！";
+    heading2.text = "10秒間で" + tap + "回叩いたら成功！！";
     heading2.font = "40px osaka";
-    heading2.x = 120;
+    heading2.x = 50;
     heading2.y = 240;
     gameScene.addChild(heading2);
 
@@ -386,11 +386,11 @@ function gameClear(gameScene, meijin, item, hands) {
     //ここでOK画像を表示する
 
 
-
-
-    gameScene.tl.delay(300);
+    gameScene.tl.delay(200);
     gameScene.tl.then(function () {
-        game.replaceScene(game.rootScene);
+        //game.replaceScene(game.rootScene);
+
+        startResultScene();
     })
 
 
@@ -485,13 +485,7 @@ function cutin(gameScene, meijin, item, heading, heading2, tap, tapcount, hands)
     clear.x = 140;
     clear.y = 300;
     clear.tl.scaleTo(0, 0, 1);
-
-
-
-
     gameScene.addChild(clear);
-
-
 
 
     clear.tl.delay(60);
@@ -500,5 +494,57 @@ function cutin(gameScene, meijin, item, heading, heading2, tap, tapcount, hands)
         sound.play();
     });
     clear.tl.scaleTo(1, 1, 60);
+}
+
+
+function startResultScene() {
+
+    var resultScene = new Scene();
+    resultScene.backgroundColor = "#7D9DF2";
+    game.replaceScene(resultScene);
+
+
+
+    var onsen = new Sprite(200, 480);
+    onsen.image = game.assets["images_hanadan/onsen3.png"];
+    // onsen.rotation = -10;
+    onsen.x = 400;
+    onsen.y = 300;
+    resultScene.addChild(onsen);
+
+
+
+    var fukidashi = new Sprite(241, 166);
+    fukidashi.image = game.assets["images_hanadan/fukidashi.png"];
+    fukidashi.x = 241;
+    fukidashi.y = 168;
+    resultScene.addChild(fukidashi);
+
+
+    var heading = new Label();
+    heading.width = 510;
+    heading.color = "#000000";
+    heading.text = "結果発表！";
+    heading.font = "50px osaka";
+    heading.x = 120;
+    heading.y = 100;
+    resultScene.addChild(heading);
+
+
+    //todo ここは画像にしてもらう
+    //吹き出しと文字を合体。OKNG2パターン作る
+
+    var heading2 = new Label();
+    heading2.width = 210;
+    heading2.color = "#000000";
+    heading2.text = "素敵な泥団子だわ！付き合ってあげてもいいわよ";
+    heading2.font = "20px osaka";
+    heading2.x = 50;
+    heading2.y = 240;
+    resultScene.addChild(heading2);
+    if (result == true) {
+
+    }
+
 
 }
