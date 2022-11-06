@@ -54,6 +54,9 @@ game.preload('images_hanadan/onsen5.png');
 game.preload('images_hanadan/onsen6.png');
 game.preload('images_hanadan/onsen7.png');
 game.preload('images_hanadan/start.png');
+game.preload('images_hanadan/haikei.jpg');
+game.preload('images_hanadan/taitoru.png');
+game.preload('images_hanadan/sabutaitoru.png');
 
 
 //判定結果
@@ -71,10 +74,32 @@ game.onload = function () {
 
 //タイトル
 function startTitleScene() {
+    var haikei = new Sprite(640, 800);
+    haikei.image = game.assets["images_hanadan/haikei.jpg"];
+    game.rootScene.addChild(haikei);
+
+    var taitoru = new Sprite(284, 45);
+    taitoru.image = game.assets["images_hanadan/taitoru.png"];
+    taitoru.x = 150;
+    taitoru.y = 190;
+    taitoru.tl.scaleTo(1.5, 1.5, 1);
+    game.rootScene.addChild(taitoru);
+
+
+    var sabutaitoru = new Sprite(286, 68);
+    sabutaitoru.image = game.assets["images_hanadan/sabutaitoru.png"];
+    sabutaitoru.x = 150;
+    sabutaitoru.y = 300;
+    sabutaitoru.tl.scaleTo(1.5, 1.5, 1);
+
+    game.rootScene.addChild(sabutaitoru);
+
+
+
     var button_beginner = new Sprite(214, 82);
     button_beginner.image = game.assets["images_hanadan/start.png"];
     button_beginner.x = 200;
-    button_beginner.y = 420;
+    button_beginner.y = 620;
     button_beginner.on('touchstart', function (e) {
         var sound = game.assets['se/start.mp3'].clone();
         sound.play();
@@ -95,6 +120,11 @@ function startMenuScene() {
     var menuScene = new Scene();
     menuScene.backgroundColor = "#7D9DF2";
     game.replaceScene(menuScene);
+
+    var haikei = new Sprite(640, 800);
+    haikei.image = game.assets["images_hanadan/haikei.jpg"];
+
+    menuScene.addChild(haikei);
 
     var menu = new Sprite(338, 107);
     menu.image = game.assets["images_hanadan/menu.png"];
@@ -194,6 +224,11 @@ function startGameScene(tap) {
     //シーン作成
     var gameScene = new Scene();
     gameScene.backgroundColor = "#7D9DF2";
+
+    var haikei = new Sprite(640, 800);
+    haikei.image = game.assets["images_hanadan/haikei.jpg"];
+    gameScene.addChild(haikei);
+
 
     gameScene.on('touchstart', function (e) {
         var sound = game.assets['se/tap.mp3'].clone();
@@ -503,6 +538,9 @@ function startResultScene() {
     resultScene.backgroundColor = "#7D9DF2";
     game.replaceScene(resultScene);
 
+    var haikei = new Sprite(640, 800);
+    haikei.image = game.assets["images_hanadan/haikei.jpg"];
+    resultScene.addChild(haikei);
 
 
     var onsen = new Sprite(200, 480);
@@ -513,8 +551,6 @@ function startResultScene() {
     resultScene.addChild(onsen);
 
 
-
-
     var heading = new Label();
     heading.width = 510;
     heading.color = "#000000";
@@ -523,8 +559,6 @@ function startResultScene() {
     heading.x = 120;
     heading.y = 100;
     resultScene.addChild(heading);
-
-
 
 
     //todo ここは画像にしてもらう
