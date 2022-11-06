@@ -5,7 +5,7 @@ var game = new Core(640, 1000);
 //FPS
 game.fps = 60;
 //背景色
-game.rootScene.backgroundColor = "#7D9DF2";
+game.rootScene.backgroundColor = "#ffffff";
 //アセットプリロード
 game.preload('enchantjs/images/chara1.png');
 game.preload('images/title.png');
@@ -121,7 +121,7 @@ function startTitleScene() {
 
 function startMenuScene() {
     var menuScene = new Scene();
-    menuScene.backgroundColor = "#7D9DF2";
+    menuScene.backgroundColor = "#";
     game.replaceScene(menuScene);
 
     var haikei = new Sprite(640, 800);
@@ -226,7 +226,7 @@ function startGameScene(tap) {
     var tapCount = 0;
     //シーン作成
     var gameScene = new Scene();
-    gameScene.backgroundColor = "#7D9DF2";
+    gameScene.backgroundColor = "#ffffff";
 
     var haikei = new Sprite(640, 800);
     haikei.image = game.assets["images_hanadan/haikei.jpg"];
@@ -538,7 +538,7 @@ function cutin(gameScene, meijin, item, heading, heading2, tap, tapcount, hands)
 function startResultScene() {
 
     var resultScene = new Scene();
-    resultScene.backgroundColor = "#7D9DF2";
+    resultScene.backgroundColor = "#ffffff";
     game.replaceScene(resultScene);
 
     var haikei = new Sprite(640, 800);
