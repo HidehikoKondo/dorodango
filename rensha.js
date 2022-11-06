@@ -27,6 +27,9 @@ game.preload('se/tap.mp3');
 game.preload('se/start.mp3');
 game.preload('se/cutin.mp3');
 game.preload('images_hanadan/fukidashi.png');
+game.preload('images_hanadan/fukidashi_ok.png');
+game.preload('images_hanadan/fukidashi_ng.png');
+
 
 
 game.preload('images_hanadan/title-bg.png');
@@ -564,13 +567,15 @@ function startResultScene() {
     //todo ここは画像にしてもらう
     //吹き出しと文字を合体。OKNG2パターン作る
     var fukidashi = new Sprite(241, 166);
-    fukidashi.image = game.assets["images_hanadan/fukidashi.png"];
+    if (result == true) {
+        fukidashi.image = game.assets["images_hanadan/fukidashi_ok.png"];
+
+    } else {
+        fukidashi.image = game.assets["images_hanadan/fukidashi_ng.png"];
+    }
     fukidashi.x = 241;
     fukidashi.y = 168;
     resultScene.addChild(fukidashi);
-    if (result == true) {
-
-    }
 
 
     //戻るボタン
